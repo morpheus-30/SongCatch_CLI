@@ -1,0 +1,17 @@
+# Ignore API keys and environment files
+.songcatch_env
+.env
+*.egg-info/
+
+# Ignore Spotify cache (your personal login token!)
+.cache
+.final_cache
+.debug_cache
+.*_cache
+
+# Ignore audio captures and python artifacts
+*.wav
+__pycache__/
+*.egg-info/
+build/
+dist/
