@@ -51,7 +51,9 @@ def run_songcatch():
     
     # --- STEP 1: CAPTURE AUDIO ---
     print("\n[1/3] 🎙️  Listening to system audio...")
-    record_audio(filename=audio_file, duration=5) 
+    
+    # 🚨 Catch the filename returned by the smart audio function
+    audio_file = record_audio(filename="/tmp/songcatch_capture.wav", duration=5) 
     
     # --- STEP 2: RECOGNIZE SONG ---
     print("\n[2/3] 🧠 Identifying track via Shazam...")
