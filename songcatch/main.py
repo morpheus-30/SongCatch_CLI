@@ -59,13 +59,27 @@ def run_songcatch():
     print("\n[2/3] 🧠 Identifying track via Shazam...")
     song_info = recognize_song(filename=audio_file)
     
+    # 🚨 THE NEW FALLBACK: If Shazam fails, ask the user!
     if not song_info:
-        print("❌ Could not identify the song. Exiting.")
-        return
-
-    title = song_info['title']
-    artist = song_info['artist']
-    print(f"🎵 Identified: {title} by {artist}")
+        print("❌ Could not hear or identify the song from the audio.")
+        fallback = input("👉 Would you like to type the song details manually? (y/n): ").strip().lower()
+        
+        if fallback == 'y':
+            print("\n📝 Manual Entry Mode:")
+            title = input("🎵 Enter Song Title: ").strip()
+            artist = input("🎤 Enter Artist Name: ").strip()
+            
+            if not title:
+                print("❌ Song title is required. Exiting.")
+                return
+        else:
+            print("👋 Exiting SongCatch. Catch ya later!")
+            return
+    else:
+        # If Shazam succeeds, grab the data normally
+        title = song_info['title']
+        artist = song_info['artist']
+        print(f"🎵 Identified: {title} by {artist}")
     
     # --- STEP 3: SAVE TO SPOTIFY ---
     print("\n[3/3] 💚 Injecting into Spotify Liked Songs...")

@@ -9,8 +9,12 @@ setup(
         'pydub',
         'spotipy',
         'python-dotenv', 
-        # ADD WHATEVER AUDIO LIBRARY YOU USED IN audio.py HERE (e.g., 'sounddevice', 'pyaudio')
+        # (Keep whatever linux audio library you used here)
     ],
+    # 🚨 This tells pip to only install the WASAPI patch on Windows machines
+    extras_require={
+        ':sys_platform == "win32"': ['pyaudiowpatch'],
+    },
     entry_points={
         'console_scripts': [
             'songcatch=songcatch.main:run_songcatch',
